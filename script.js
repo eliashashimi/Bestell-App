@@ -5,7 +5,13 @@ function init() {
 
 // Funktion die die Kategorien ausführt
 function renderCategories() {
+    const renderCategoriesRef = document.getElementById('menuCategories');
+    renderCategoriesRef = "";
 
+    for (let i = 0; i < menuCategories.length; i++) {
+        const element += 
+        
+    }
 }
 
 // was muss in renderCategories gerendert werden

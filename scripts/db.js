@@ -1,7 +1,7 @@
 let menuCategories = [
     {
         "icon": "./assets/icons/Burger.png",
-        "Category": "Burger & Sandwiches",
+        "category": "Burger & Sandwiches",
         "dishes": [
             {
                 "image": "Burger-Image-1.jpg",

@@ -1,18 +1,34 @@
 // übergreifende function die beim laden ausgeführt wird
 function init() {
-
+    renderCategories();
+    renderDishes();
 }
 
 // Funktion die die Kategorien ausführt
 function renderCategories() {
-    const renderCategoriesRef = document.getElementById('menuCategories');
-    renderCategoriesRef = "";
+    const renderDishesRef = document.getElementById("menuCategories");
+    renderDishesRef.innerHTML = "";
 
     for (let i = 0; i < menuCategories.length; i++) {
-        const element += 
+        renderDishesRef.innerHTML += renderCategoriesTemp(i);
         
     }
 }
+
+function renderDishes() {
+    const renderCategoriesRef = document.getElementById("menuCategories");
+    
+    renderCategoriesRef.innerHTML = "";
+
+    for (let i = 0; i < menuCategories.length; i++) {
+
+        for (let j = 0; j < menuCategories[i].dishes.length; j++) {
+            renderCategoriesRef.innerHTML += renderDishesTemp(i, j);
+        }
+        
+    }
+}
+
 
 // was muss in renderCategories gerendert werden
 // woher kommt der inhalt 

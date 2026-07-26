@@ -1,33 +1,90 @@
-// übergreifende function die beim laden ausgeführt wird
+function formatCurrency(amount) {
+    return new Intl.NumberFormat('de-DE', { style: 'currency', currency: 'EUR' }).format(amount);
+}
+
+let basket = [];
+
 function init() {
     renderCategories();
-    renderDishes();
+    renderBasket();
 }
 
 // Funktion die die Kategorien ausführt
 function renderCategories() {
-    const renderDishesRef = document.getElementById("menuCategories");
-    renderDishesRef.innerHTML = "";
-
-    for (let i = 0; i < menuCategories.length; i++) {
-        renderDishesRef.innerHTML += renderCategoriesTemp(i);
-        
-    }
-}
-
-function renderDishes() {
-    const renderCategoriesRef = document.getElementById("menuCategories");
-    
+    const renderCategoriesRef  = document.getElementById("menuCategories");
     renderCategoriesRef.innerHTML = "";
 
     for (let i = 0; i < menuCategories.length; i++) {
+        renderCategoriesRef.innerHTML += renderCategoriesTemp(i);
+        let dish = renderDishes(i);
+        const dishesContainerRef = document.getElementById(`dishesContainer${i}`);
+
+        dishesContainerRef.innerHTML = dish;
+    }
+    
+}
+
+function renderDishes(i) {
+    let dishes = "";
 
         for (let j = 0; j < menuCategories[i].dishes.length; j++) {
-            renderCategoriesRef.innerHTML += renderDishesTemp(i, j);
+            dishes += renderDishesTemp(i, j);
         }
-        
-    }
+        return dishes;
 }
+
+function addToBasket(i, j) {
+    let selectDish = menuCategories[i].dishes[j];
+    let foundDish = basket.find(item => item.name === selectDish.name)
+
+    if(foundDish === true) {
+        foundDish.amount++;
+    } 
+    renderBasket();
+}
+
+function renderBasket() {
+    const basketRef = document.getElementById("basket");
+    basketRef.innerHTML = "";
+
+    if (basket.length === 0) {
+        basketRef.innerHTML = renderBasketTextTemp();
+    }
+    return;
+
+    let subtotal = 0;
+
+    for (let i = 0; i < basket.length; i++) {
+        let item = basket[i];
+        let itemTotal = item.price * item.amount;
+        subtotal += itemTotal;
+
+        basketRef.innerHTML += renderBasketCardTemp(i, item, itemTotal);
+    }
+
+    let deliveryFee = 4.99;
+
+    if (subtotal > 60) {
+        deliveryFee = "Free";
+    }
+
+    let total = subtotal + deliveryFee;
+
+    basketRef.innerHTML = renderBasketPricesTemp(subtotal, deliveryFee, total);
+}
+
+function changeAmount(i, change){
+    basket[i].amount += change;
+
+    if (basket[i].amount <= 0) {
+        basket.splice(i, 1);        
+    }
+
+    renderBasket();
+}
+
+
+
 
 
 // was muss in renderCategories gerendert werden
@@ -50,5 +107,3 @@ function renderDishes() {
 
 // function für das berechnen des gesamt preises
 // was wird dazu gerechnet oder abgerechnet
-
-// 

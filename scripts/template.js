@@ -29,17 +29,17 @@ function renderDishesTemp(i, j){
 
 function renderBasketCardTemp(i, item, itemTotal) {
     return /*html*/`
-        <section class="dish-amount">
+        <section class="basket-card">
             <div class="dish-name-basket">
-                <p>${item.name}</p>
-                <img src="./assets/icons/delete.png" alt="">
+                <h2>${item.name}</h2>
+                <img src="./assets/icons/delete.png" onclick="deleteDish(${i})" alt="Löschen Mülleimer">
             </div>
             <div class="basket-amount-calc">
-                <button class="minus" onclick="changeAmount(${i})", -1>-</button>
-                <span>${item.amount}</span>
-                <button class="plus" onclick="changeAmount(${i})", 1>+</button>
-                <p>${formatCurrency(itemTotal)}</p>
-                </div>
+                <button class="minus-btn" onclick="changeAmount(${i}, -1)">-</button>
+                <span class="amount-display">${item.amount}</span>
+                <button class="plus-btn" onclick="changeAmount(${i}, 1)">+</button>
+            </div>
+            <p class="item-total-price">${formatCurrency(itemTotal)}</p>
         </section>
     `
 }
@@ -58,6 +58,9 @@ function renderBasketPricesTemp(subtotal, deliveryFee, total) {
                 <p><strong>Total</strong></p>
                 <p><strong>${formatCurrency(total)}</strong></p>
             </div>
+            <div>
+                <button class="buy-btn">Buy now</button>
+            </div>
         </section>
     `
 }
@@ -69,7 +72,7 @@ function renderBasketTextTemp() {
                 <h2>Your Basket</h2>
             </div>
             <div>
-                <p>Nothin here yet. Go ahead and choose something delicious!</p>
+                <p>Nothing here yet. Go ahead and choose something delicious!</p>
             </div>
             <div>
                 <img src="./assets/icons/shopping_cart.png" alt="Shopping Cart">

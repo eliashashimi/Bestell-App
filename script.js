@@ -99,7 +99,34 @@ function deleteDish(i) {
     renderBasket();
 }
 
+function renderBuy() {
+    let orderRef = document.getElementById("basket");
 
+    if (!document.getElementById("orderDialog")) {
+        orderRef.innerHTML += renderBuyTemp();
+    }
+    
+    const dialog = document.getElementById("orderDialog");
+    dialog.showModal();
+}
+
+function renderBuyClose() {
+    const dialog = document.getElementById("orderDialog");
+    if (dialog) {
+        dialog.close();
+        
+    }
+    basket = [];
+    renderBasket();
+}
+
+function updateBasketValues(i) {
+    let item = basket[i];
+
+    if(!item) {
+        document.getElementById(`basketCards(${i})`);
+    }
+}
 
 
 

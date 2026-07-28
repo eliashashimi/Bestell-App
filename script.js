@@ -35,7 +35,7 @@ function renderDishes(i) {
 
 function addToBasket(i, j) {
     let selectDish = menuCategories[i].dishes[j];
-    let foundDish = basket.find(item => item.name === selectDish.name);
+    let foundDish = basket.findIndex(item => item.name === selectDish.name);
 
     if(foundDish) {
         foundDish.amount++;

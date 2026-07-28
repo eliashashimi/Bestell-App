@@ -1,9 +1,18 @@
 .order-content {
+    width: 100%;
+    max-width: 1440px;
     display: flex;
+    justify-content: center;
 }
 
 
 .categories {
     width: 100%;
         background: #E76C1F;
+}
+
+.dishes-names > img {
+    height: 70px;
+    width: 120px;
+
 }

@@ -2,6 +2,7 @@ let menuCategories = [
     {
         "icon": "./assets/icons/Burger.png",
         "category": "Burger & Sandwiches",
+        "aside": "",
         "dishes": [
             {
                 "image": "Burger-Image-1.jpg",
@@ -40,6 +41,7 @@ let menuCategories = [
     {
         "icon": "./assets/icons/Pizza.png",
         "category": "Pizza",
+        "aside": "(30cm)",
         "dishes": [
             {
                 "image": "Pizza-Image-1.jpg",
@@ -78,6 +80,7 @@ let menuCategories = [
     {
         "icon": "./assets/icons/Salad.png",
         "category": "Salad",
+        "aside": "",
         "dishes": [
             {
                 "image": "Salad-Image-1.jpg",

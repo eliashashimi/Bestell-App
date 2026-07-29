@@ -5,14 +5,42 @@
     justify-content: center;
 }
 
-
 .categories {
+    height: 60px;
     width: 100%;
-        background: #E76C1F;
+    background: #e76c1f;
+    display: flex;
+    align-items: center;
+    gap: 28px;
+    z-index: 1;
 }
 
-.dishes-names > img {
+.name-categories {
+    font-size: 40px;
+    color: white;
+    font-family: "Palanquin";
+    font-style: normal;
+    font-weight: 700;
+}
+
+.aside-category-name {
+    font-family: "Palanquin";
+    font-style: normal;
+    font-weight: 400;
+}
+
+.dish-card {
+    height: 140px;
+    width: 700px;
+    background: #fdeadc;
+
+    display: flex;
+}
+
+.dish-name > img {
     height: 70px;
     width: 120px;
+}
 
+.dish-name {
 }

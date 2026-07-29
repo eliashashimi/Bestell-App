@@ -3,7 +3,6 @@ body {
     height: 100%;
 }
 
-
 .header-bar {
     height: 128px;
     width: 100%;
@@ -11,77 +10,33 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    position: relative;
+    z-index: 2;
+    padding: 0px 45px 0px 120px;
 }
 .header-wrapper {
     width: 100%;
     max-width: 1440px;
     display: flex;
     justify-content: space-between;
-    .logo-bestellapp {
+    align-items: center;
+}
+    
+.logo-bestellapp {
     height: 40px;
     width: 95px;
-    }
-    .menu-logo {
-        height: 45px;
-        width: 35px;
-    }
-    padding: 0px 45px 0px 120px;
-    }
+}
+.menu-logo {
+    height: 60px;
+    width: 60px;
+}
 
-.Hero {
-    height: 670px;
+main {
     width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    .home-hero {
-        height: 500px;
-        width: 100%;
-        object-fit: cover;
-        object-position: bottom;
-        top: 60px;
-    }
-    .hero-burger {
-        height: 150px;
-        width: 150px;
-        border: 13px solid white;
-        border-radius: 100%;
-        position: fixed;
-        top: 550px;
-    }
-    .restaurant-descr {
-        height: 105px;
-        margin-top: 70px;
-        display: flex;
-        align-items: center;
-        display: flex;
-        flex-direction: column;
-    }
-    .burger-house-text {
-        height: 75px;
-        display: flex;
-        align-items: center;
-        gap: 26px;
-    }
-    .restaurant-descr img {
-        height: 32px;
-        width: 110px;
-    }
-    .burger-house {
-        font-size: 48px;
-        font-family: 'Palanquin Dark';
-        font-style: bold;
-        font-weight: 700;
-        line-height: 120%;
-    }
-
-    .Hero-p {
-        font-size: 24px;
-        font-family: 'Palanquin Dark';
-        font-style: normal;
-        font-weight: 700;
-    }
 }
 
 footer {
@@ -91,12 +46,12 @@ footer {
     display: flex;
     justify-content: center;
     align-items: center;
-    .footer-text {
-        height: 24px;
-        width: 540px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        color: white;
-    }
 }
+.footer-text {
+    height: 24px;
+    width: 540px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+    }

@@ -1,57 +1,58 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title style="color: orange;">Bestell App</title>
-    <link rel="icon" type="image/x-icon" href="./assets/icons/Delivery-Car.png">
-    <link rel="stylesheet" href="./styles/images.css">
-    <link rel="stylesheet" href="./styles/basket.css">
-    <link rel="stylesheet" href="./styles/menu.css">
-    <link rel="stylesheet" href="./styles/fonts.css">
-    <link rel="stylesheet" href="./styles/standard.css">
-    <link rel="stylesheet" href="style.css">
-    <script src="./scripts/template.js" defer></script>
-    <script src="./scripts/db.js"></script>
-    <script src="script.js"></script>
-</head>
-<body onload="init()">
-    <header>
-        <section class="header-bar">
-            <div class="header-wrapper">
-                <img class="logo-bestellapp" src="./assets/icons/LogoApp.png" alt="Logo Bestell App">
-                <img class="menu-logo" src="./assets/icons/menu.png" alt="Menu Bar 3 Lines">
-            </div>
-        </section>
-    </header>
-    <main>
-        <section class="Hero">
-            <img class="home-hero" src="./assets/images/Hero-Image.jpg" alt="Hero Image with Burger, Pizza, Pommes and Salad">
-            <img class="hero-burger" src="./assets/images/Hero-Burger.png" alt="cartoon Burger">
-            <div class="restaurant-descr">
-                <div class="burger-house-text">
-                <p class="burger-house"><span style="color: orange;">Burger</span>House</p>
-                <img src="./assets/images/4,1 Stars.png" alt="Star with 4,1 ">
-                </div>
-                <p class="Hero-p">The best of Burgers, Pizza, and Greens, all in one great place.</p>
-            </div>
-        </section>
-        <div class="order-content">
-            <section class="menu-categories">
-                <div id="menuCategories"></div>
-            </section>
-            <section  class="basket-wrapper">
-                <div id="basket" class="basket">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title style="color: orange">Bestell App</title>
+        <link rel="icon" type="image/x-icon" href="./assets/icons/Delivery-Car.png" />
+        <link rel="stylesheet" href="./styles/hero.css" />
+        <link rel="stylesheet" href="./styles/icons.css" />
+        <link rel="stylesheet" href="./styles/images.css" />
+        <link rel="stylesheet" href="./styles/basket.css" />
+        <link rel="stylesheet" href="./styles/menu.css" />
+        <link rel="stylesheet" href="./styles/fonts.css" />
+        <link rel="stylesheet" href="./styles/standard.css" />
+        <link rel="stylesheet" href="style.css" />
+        <script src="./scripts/template.js" defer></script>
+        <script src="./scripts/db.js" defer></script>
+        <script src="script.js" defer></script>
+    </head>
+    <body onload="init()">
+        <header>
+            <section class="header-bar">
+                <div class="header-wrapper">
+                    <img class="logo-bestellapp" src="./assets/icons/LogoApp.png" alt="Logo Bestell App" />
+                    <img class="menu-logo" src="./assets/icons/menu.png" alt="Menu Bar 3 Lines" />
                 </div>
             </section>
-        </div>
-    </main>
-    <footer>
-        <div class="footer-text">
-            <img src="./assets/images/Copyright.png" alt="Copyright">
-            <p>Impressum</p>
-            <p>Cookie Preferences</p>
-        </div>
-    </footer>
-</body>
+        </header>
+        <main>
+            <section class="Hero">
+                <img class="home-hero" src="./assets/images/Hero-Image.jpg" alt="Hero Image with Burger, Pizza, Pommes and Salad" />
+                <img class="hero-burger" src="./assets/images/Hero-Burger.png" alt="cartoon Burger" />
+                <div class="restaurant-descr">
+                    <div class="burger-house-text">
+                        <p class="burger-house"><span style="color: #e76c1f">Burger</span>House</p>
+                        <img src="./assets/images/4,1 Stars.png" alt="Star with 4,1 " />
+                    </div>
+                    <p class="Hero-p">The best of Burgers, Pizza, and Greens, all in one great place.</p>
+                </div>
+            </section>
+            <div class="order-content">
+                <section class="menu-categories">
+                    <div id="menuCategories"></div>
+                </section>
+                <section class="basket-wrapper">
+                    <div id="basket" class="basket"></div>
+                </section>
+            </div>
+        </main>
+        <footer>
+            <div class="footer-text">
+                <img src="./assets/images/Copyright.png" alt="Copyright" />
+                <p>Impressum</p>
+                <p>Cookie Preferences</p>
+            </div>
+        </footer>
+    </body>
 </html>

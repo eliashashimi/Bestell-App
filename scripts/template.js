@@ -1,21 +1,21 @@
 function renderCategoriesTemp(i) {
-    return /*html*/`
+    return /*html*/ `
         <section>
             <div class="categories">
-                <img src="${menuCategories[i].icon}" alt="Icon von ${menuCategories[i].category}">
-                <p>${menuCategories[i].category}</p>
+                <img class="icon-categories" src="${menuCategories[i].icon}" alt="Icon von ${menuCategories[i].category}">
+                <p class="name-categories" >${menuCategories[i].category} <span class="aside-category-name">${menuCategories[i].aside}</span></p>
             </div>
             <div id="dishesContainer${i}" class="dishesContainer"></div>
         </section>
-    `
+    `;
 }
 
-function renderDishesTemp(i, j){
+function renderDishesTemp(i, j) {
     let dish = menuCategories[i].dishes[j];
-    return /*html*/`
-        <section >
-            <div class="dishes-names">
-                <img src="./assets/images/${dish.image}" alt="${dish.name}">
+    return /*html*/ `
+        <section class="dish-card">
+            <img src="./assets/images/${dish.image}" alt="${dish.name}">
+            <div class="dish-name">
                 <h3>${dish.name}</h3>
                 <p>${dish.insied}</p>
             </div>
@@ -24,11 +24,11 @@ function renderDishesTemp(i, j){
                 <button onclick="addToBasket(${i}, ${j})">+</button>
             </div>
         </section>
-    `
+    `;
 }
 
 function renderBasketCardTemp(i, item, itemTotal) {
-    return /*html*/`
+    return /*html*/ `
         <section id="basketCards${i}" class="basket-card">
             <div class="dish-name-basket">
                 <h2 id="basketTitle${i}">${item.name}</h2>
@@ -41,10 +41,10 @@ function renderBasketCardTemp(i, item, itemTotal) {
             </div>
             <p id="itemTotal${i}" class="item-total-price">${formatCurrency(itemTotal)}</p>
         </section>
-    `
+    `;
 }
 function renderBasketPricesTemp(subtotal, deliveryFee, total) {
-    return /*html*/`
+    return /*html*/ `
         <section class="calc-price-basket">
             <div class="subtotal">
                 <p>Subtotal</p>
@@ -62,11 +62,11 @@ function renderBasketPricesTemp(subtotal, deliveryFee, total) {
                 <button id="buyBtn" class="buy-btn" onclick="renderBuy()">Buy now</button>
             </div>
         </section>
-    `
+    `;
 }
 
 function renderBasketTextTemp() {
-    return /*html*/`
+    return /*html*/ `
         <section class="empty-basket">
             <div>
                 <h2>Your Basket</h2>
@@ -78,11 +78,11 @@ function renderBasketTextTemp() {
                 <img src="./assets/icons/shopping_cart.png" alt="Shopping Cart">
             </div>
         </section>
-    `
+    `;
 }
 
 function renderBuyTemp() {
-    return /*html*/`
+    return /*html*/ `
             <dialog id="orderDialog" class="order-dialog">
                 <button id="closeOrderBtn" class="close-order-btn" onclick="renderBuyClose()">x</button>
                 <div class="dialog-content">
@@ -93,5 +93,5 @@ function renderBuyTemp() {
                     </div>
                 </div>
             </dialog>
-    `
+    `;
 }

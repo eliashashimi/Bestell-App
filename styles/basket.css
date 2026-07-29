@@ -7,7 +7,8 @@
 
 .basket {
     width: 100%;
-    height: fit-content;
+    height: 700px;
+    max-height: 100dvh;
     background-color: yellow;
     position: sticky;
     top: 0;

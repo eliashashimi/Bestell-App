@@ -31,15 +31,15 @@ function renderBasketCardTemp(i, item, itemTotal) {
     return /*html*/`
         <section id="basketCards${i}" class="basket-card">
             <div class="dish-name-basket">
-                <h2 id="basketTitle">${item.name}</h2>
+                <h2 id="basketTitle${i}">${item.name}</h2>
                 <img src="./assets/icons/delete.png" onclick="deleteDish(${i})" alt="Löschen Mülleimer">
             </div>
             <div class="basket-amount-calc">
                 <button class="minus-btn" onclick="changeAmount(${i}, -1)">-</button>
-                <span id="basketAmount" class="basket-amount">${item.amount}</span>
+                <span id="basketAmount${i}" class="basket-amount">${item.amount}</span>
                 <button class="plus-btn" onclick="changeAmount(${i}, 1)">+</button>
             </div>
-            <p id="itemTotal" class="item-total-price">${formatCurrency(itemTotal)}</p>
+            <p id="itemTotal${i}" class="item-total-price">${formatCurrency(itemTotal)}</p>
         </section>
     `
 }

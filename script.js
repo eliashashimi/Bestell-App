@@ -35,18 +35,23 @@ function renderDishes(i) {
 
 function addToBasket(i, j) {
     let selectDish = menuCategories[i].dishes[j];
+
+    // das Dish bzw. der Index muss nun im Warenkorb gesucht werden
     let foundDish = basket.findIndex(item => item.name === selectDish.name);
 
-    if(foundDish) {
-        foundDish.amount++;
+    if(foundDish > 0) {
+        basket[foundDish].amount++;
+        // hier muss nur für das eine Element das update stattfinden
+        updateBasketValues(foundDish);
     } else {
         basket.push({
             "name": selectDish.name,
             "price": selectDish.price,
             "amount": 1
-        })
+        });
+        renderBasket();
     }
-    renderBasket();
+    
 }
 
 function renderBasket() {
@@ -83,14 +88,15 @@ function renderBasket() {
     basketRef.innerHTML += renderBasketPricesTemp(subtotal, deliveryFee, total);
 }
 
-function changeAmount(i, change){
-    basket[i].amount += change;
+function changeAmount(index, change){
+    basket[index].amount += change;
 
-    if (basket[i].amount <= 0) {
-        basket.splice(i, 1);        
+    if (basket[index].amount <= 0) {
+        basket.splice(index, 1);
+        renderBasket();      
+    } else {
+        updateBasketValues(index);
     }
-
-    renderBasket();
 }
 
 function deleteDish(i) {
@@ -119,14 +125,56 @@ function renderBuyClose() {
     basket = [];
     renderBasket();
 }
-
+// die Funktion soll den den wert der Dishes Karten aktualisieren und nicht den ganzen Basket
 function updateBasketValues(i) {
     let item = basket[i];
 
+    // es muss überprüft werden ob dieses dish existiert
     if(!item) {
-        document.getElementById(`basketCards(${i})`);
+        const card = document.getElementById(`basketCards(${i})`);
+        if(card) {
+            card.remove();
+        }
+        recalculateTotal();
+        return;
     }
+
+    let itemTotal = item.price * item.amount;
+
+    document.getElementById(`basketAmount${i}`).innerText = item.amount;
+    document.getElementById(`itemTotal${i}`).innerText = formatCurrency(itemTotal);
+
+    // hier muss neu berechnet werden
+    recalculateTotals();
 }
+
+// function die nur die unteren Preise im Warenkorb ändert
+function recalculateTotals() {
+    let subtotal = 0;
+
+    for (let i = 0; i < basket.length; i++) {
+        subtotal += basket[i].price * basket[i].amount;
+    }
+
+    let deliveryFee;
+    if (subtotal > 60 || subtotal === 0) {
+        deliveryFee = 0;
+    } else {
+        deliveryFee = 4.99;
+    }
+        
+    let total = subtotal + deliveryFee;
+
+    // hier sollten die ID`S angesprochen und einzelnd geändert werden mit der kalkulation von deliveryFee
+    if (deliveryFee === 0) {
+        document.getElementById("deliveryFee").innerText = 0;
+    } else {
+    document.getElementById("deliveryFee").innerText = formatCurrency(deliveryFee);
+    }
+
+    document.getElementById("total").innerText = formatCurrency(total);
+} 
+
 
 
 

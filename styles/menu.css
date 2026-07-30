@@ -29,18 +29,43 @@
     font-weight: 400;
 }
 
+.dishesContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 20px 170px 45px 120px;
+}
+
 .dish-card {
     height: 140px;
     width: 700px;
     background: #fdeadc;
-
+    border-radius: 12px;
     display: flex;
+    gap: 16px;
+    padding: 10px;
 }
 
-.dish-name > img {
-    height: 70px;
-    width: 120px;
+.dish-name-price-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
 }
 
 .dish-name {
+    width: 300px;
+}
+
+.price-add-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.add-button-dish-card {
+    height: 30px;
+    width: 40px;
+    font-size: 25px;
+    border-radius: 10px;
 }

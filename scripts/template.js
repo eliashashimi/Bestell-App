@@ -14,14 +14,16 @@ function renderDishesTemp(i, j) {
     let dish = menuCategories[i].dishes[j];
     return /*html*/ `
         <section class="dish-card">
-            <img src="./assets/images/${dish.image}" alt="${dish.name}">
-            <div class="dish-name">
-                <h3>${dish.name}</h3>
-                <p>${dish.insied}</p>
-            </div>
-            <div class="price-add">
-                <p>${formatCurrency(dish.price)}</p>
-                <button onclick="addToBasket(${i}, ${j})">+</button>
+            <img class="dish-card-img" src="./assets/images/${dish.image}" alt="${dish.name}">
+            <div class="dish-name-price-wrapper">
+                <div class="dish-name">
+                    <h3>${dish.name}</h3>
+                    <p>${dish.insied}</p>
+                </div>
+                <div class="price-add-wrapper">
+                    <p>${formatCurrency(dish.price)}</p>
+                    <button class="add-button-dish-card" onclick="addToBasket(${i}, ${j})">+</button>
+                </div>
             </div>
         </section>
     `;

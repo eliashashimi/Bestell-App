@@ -23,8 +23,11 @@
     display: flex;
     align-items: center;
     gap: 28px;
-    padding-left: 170px;
+    padding-left: clamp(25px, calc(13.158px + 3.947vw), 70px);
     z-index: -1;
+}
+
+@media screen and (max-width: ) {
 }
 
 .categories::after {
@@ -53,16 +56,22 @@
     font-weight: 400;
 }
 
+@media screen and (max-width: 400px) {
+    .aside-category-name {
+        display: none;
+    }
+}
+
 .dishesContainer {
     display: flex;
     flex-direction: column;
     gap: 16px;
-    padding: 20px 0px;
+    padding: 20px 20px;
 }
 
 @media screen and (max-width: 740px) {
     .dishContainer {
-        padding: 0;
+        padding: 0px 20px;
     }
 }
 
@@ -80,7 +89,6 @@
     .dish-card {
         height: 270px;
         width: 100%;
-        margin: 0px 20px;
         align-items: center;
         flex-direction: column;
     }

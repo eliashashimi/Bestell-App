@@ -1,5 +1,13 @@
+.home-hero {
+    height: clamp(330px, calc(285.263px + 14.912vw), 500px);
+    width: 100%;
+    object-fit: cover;
+    object-position: bottom left;
+    z-index: 1;
+}
+
 .dish-card-img {
-    width: 250px;
+    width: 350px;
     border-radius: 12px;
     object-fit: cover;
 }

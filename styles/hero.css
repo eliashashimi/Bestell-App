@@ -4,17 +4,7 @@
     max-width: 1440px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
-}
-
-.home-hero {
-    height: 500px;
-    width: 100%;
-    object-fit: cover;
-    object-position: bottom;
-    margin-top: -140px;
-    z-index: 1;
 }
 
 .hero-burger {
@@ -36,13 +26,19 @@
 
 @media screen and (max-width: 1200px) {
     .restaurant-descr {
-        padding-top: 20px;
+        padding-top: 30px;
     }
 }
 
-@media screen and (max-width: 740px) {
+@media screen and (max-width: 768px) {
     .restaurant-descr {
         padding-top: 40px;
+    }
+}
+
+@media screen and (max-width: 660px) {
+    .restaurant-descr {
+        padding-top: 80px;
     }
 }
 
@@ -50,6 +46,14 @@
     height: 75px;
     display: flex;
     gap: 26px;
+}
+
+@media screen and (max-width: 660px) {
+    .burger-house-text {
+        flex-direction: column-reverse;
+        align-items: center;
+        gap: 0;
+    }
 }
 
 .restaurant-descr img {

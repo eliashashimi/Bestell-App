@@ -55,6 +55,12 @@ body {
     width: 60px;
 }
 
+@media screen and (max-width: 500px) {
+    .menu-logo {
+        display: none;
+    }
+}
+
 main {
     width: 100%;
     display: flex;

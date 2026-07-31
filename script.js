@@ -11,7 +11,6 @@ function init() {
     renderBasket();
 }
 
-// Funktion die die Kategorien ausführt
 function renderCategories() {
     const renderCategoriesRef = document.getElementById("menuCategories");
     renderCategoriesRef.innerHTML = "";
@@ -37,12 +36,11 @@ function renderDishes(i) {
 function addToBasket(i, j) {
     let selectDish = menuCategories[i].dishes[j];
 
-    // das Dish bzw. der Index muss nun im Warenkorb gesucht werden
     let foundIndex = basket.findIndex((item) => item.name === selectDish.name);
 
     if (foundIndex > -1) {
         basket[foundIndex].amount++;
-        // hier muss nur für das eine Element das update stattfinden
+
         updateBasketValues(foundIndex);
     } else {
         basket.push({
@@ -51,6 +49,23 @@ function addToBasket(i, j) {
             amount: 1,
         });
         renderBasket();
+    }
+
+    if (window.innerWidth <= 1200) {
+        document.getElementById("basket-wrapper").classList.add("active");
+    }
+}
+
+function closeMobileBasket() {
+    const wrapper = document.getElementById("basket-wrapper");
+
+    if (wrapper) {
+        wrapper.classList.remove("active");
+    }
+
+    const basketInside = document.getElementById("basket");
+    if (basketInside) {
+        basketInside.classList.remove("active");
     }
 }
 
@@ -66,6 +81,12 @@ function renderBasket() {
     renderBasketCalc();
 }
 
+function toggleMobileBasket() {
+    renderBasket();
+
+    const navBasketWrapperRef = document.getElementById("basket-wrapper");
+    navBasketWrapperRef.classList.toggle("active");
+}
 function renderBasketCalc() {
     const basketCalcRef = document.getElementById("basket-card-wrapper");
     basketCalcRef.innerHTML = "";
@@ -123,6 +144,12 @@ function renderBuyClose() {
     if (dialog) {
         dialog.close();
     }
+
+    const navBasketWrapperRef = document.getElementById("basket-wrapper");
+    if (navBasketWrapperRef) {
+        navBasketWrapperRef.classList.remove("active");
+    }
+
     basket = [];
     renderBasket();
 }
@@ -156,7 +183,7 @@ function recalculateTotals() {
     for (let i = 0; i < basket.length; i++) {
         subtotal += basket[i].price * basket[i].amount;
     }
-
+    document.getElementById("subtotal").innerText = formatCurrency(subtotal);
     let deliveryFee;
     if (subtotal > 60 || subtotal === 0) {
         deliveryFee = 0;
@@ -175,24 +202,3 @@ function recalculateTotals() {
 
     document.getElementById("total").innerText = formatCurrency(total);
 }
-
-// was muss in renderCategories gerendert werden
-// woher kommt der inhalt
-// wann und wie lange
-// wann und wo wird der inhalt gespeichert setItemToLocalStorage
-// wann und wo wird der inhalt abgerufen getItemFromLocalStorage
-
-// function für das hinzufügen der gerichte in den Warenkorb
-// wann, wie und wohin wird ein Gericht hinzugefügt
-// was wird übergeben durch die function
-
-// function zum entfernen
-
-// function zum löschen der gerichte
-// wann und wo werden gerichte gelöscht
-
-// functtion zum berechnen der Preise
-// wo und wann wird der Preis berechnet
-
-// function für das berechnen des gesamt preises
-// was wird dazu gerechnet oder abgerechnet

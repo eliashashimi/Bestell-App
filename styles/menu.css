@@ -3,9 +3,7 @@
     max-width: 1440px;
     display: flex;
     justify-content: center;
-    padding-left: clamp(0px, 10vw, 170px);
-    padding-right: clamp(0px, 5vw, 40px);
-    gap: clamp(12px, 3vw, 40px);
+    margin: 0px 0px 80px 0px;
 }
 
 .categories::before {
@@ -59,8 +57,13 @@
     display: flex;
     flex-direction: column;
     gap: 16px;
-    /* padding: 20px 170px 45px 120px; */
-    padding: 20px clamp(0px, calc(-44.737px + 14.912vw), 170px) 45px 120px;
+    padding: 20px 0px;
+}
+
+@media screen and (max-width: 740px) {
+    .dishContainer {
+        padding: 0;
+    }
 }
 
 .dish-card {
@@ -71,6 +74,16 @@
     display: flex;
     gap: 16px;
     padding: 10px;
+}
+
+@media screen and (max-width: 740px) {
+    .dish-card {
+        height: 270px;
+        width: 100%;
+        margin: 0px 20px;
+        align-items: center;
+        flex-direction: column;
+    }
 }
 
 .dish-name-price-wrapper {

@@ -18,13 +18,21 @@
         <script src="script.js" defer></script>
     </head>
     <body onload="init()">
-        <header>
+        <header id="home">
             <section class="header-bar">
                 <div class="header-wrapper">
                     <img class="logo-bestellapp" src="./assets/icons/LogoApp.png" alt="Logo Bestell App" />
                     <img class="menu-logo" src="./assets/icons/menu.png" alt="Menu Bar 3 Lines" />
                 </div>
             </section>
+            <nav class="nav-bar">
+                <a href="#home"><img src="./assets/icons/nav-home.png" alt="Home Icon" /></a>
+                <a href="#user"><img src="./assets/icons/nav-person.png" alt="Person Icon" /></a>
+                <a href="#order"><img src="./assets/icons/nav-takeout_dining_2.png" alt="Takeout Icon" /></a>
+                <a onclick="toggleMobileBasket()" href="javascript:void(0)"
+                    ><img src="./assets/icons/nav-shop-cart.png" alt="shopping card Icon"
+                /></a>
+            </nav>
         </header>
         <main>
             <section class="Hero">
@@ -38,11 +46,11 @@
                     <p class="Hero-p">The best of Burgers, Pizza, and Greens, all in one great place.</p>
                 </div>
             </section>
-            <div class="order-content">
+            <div id="order" class="order-content">
                 <section class="menu-categories">
                     <div id="menuCategories"></div>
                 </section>
-                <section class="basket-wrapper">
+                <section id="basket-wrapper" class="basket-wrapper">
                     <div id="basket" class="basket"></div>
                 </section>
             </div>
@@ -50,8 +58,8 @@
         <footer>
             <div class="footer-text">
                 <img src="./assets/images/Copyright.png" alt="Copyright" />
-                <p>Impressum</p>
-                <p>Cookie Preferences</p>
+                <p class="item-mitte">Impressum</p>
+                <p class="item-rechts">Cookie Preferences</p>
             </div>
         </footer>
     </body>

@@ -31,6 +31,7 @@ function renderDishesTemp(i, j) {
 
 function renderBasketWrapperTemp() {
     return /*html*/ `
+        <button class="close-basket-btn" onclick="closeMobileBasket()">&#10006</button>
         <h2 class="basket-h2">Your Basket</h2>
         <div id="basket-card-wrapper" class="basket-card-wrapper"></div>
     `;
@@ -82,7 +83,8 @@ function renderBasketPricesTemp(subtotal, deliveryFee, total) {
 
 function renderBasketTextTemp() {
     return /*html*/ `
-        <section class="empty-basket">
+        <section id="empty-basket" class="empty-basket">
+            <button class="close-basket-btn" onclick="closeMobileBasket()">&#10006</button>
             <div>
                 <h2>Your Basket</h2>
             </div>
@@ -103,8 +105,8 @@ function renderBuyTemp() {
                 <div class="dialog-content">
                     <img src="./assets/icons/Delivery-Car.png" alt="Delivery Car Icon">
                     <div class="ordConfirmed">
-                        <h2>Order confirmed</h2>
-                        <h3>Your food is on the way</h3>
+                        <h2>Order confirmed!</h2>
+                        <h3>Your food is on the way!</h3>
                     </div>
                 </div>
             </dialog>

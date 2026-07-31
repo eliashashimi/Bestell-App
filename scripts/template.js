@@ -29,22 +29,34 @@ function renderDishesTemp(i, j) {
     `;
 }
 
+function renderBasketWrapperTemp() {
+    return /*html*/ `
+        <h2 class="basket-h2">Your Basket</h2>
+        <div id="basket-card-wrapper" class="basket-card-wrapper"></div>
+    `;
+}
+
 function renderBasketCardTemp(i, item, itemTotal) {
     return /*html*/ `
         <section id="basketCards${i}" class="basket-card">
             <div class="dish-name-basket">
                 <h2 id="basketTitle${i}">${item.name}</h2>
-                <img src="./assets/icons/delete.png" onclick="deleteDish(${i})" alt="Löschen Mülleimer">
+                <img src="./assets/icons/trash-Bin.png" onclick="deleteDish(${i})" alt="Löschen Mülleimer" 
+                onmouseenter="this.src='./assets/icons/trash-Bin-hover.png'" 
+                onmouseleave="this.src='./assets/icons/trash-Bin.png'">
             </div>
-            <div class="basket-amount-calc">
-                <button class="minus-btn" onclick="changeAmount(${i}, -1)">-</button>
-                <span id="basketAmount${i}" class="basket-amount">${item.amount}</span>
-                <button class="plus-btn" onclick="changeAmount(${i}, 1)">+</button>
+            <div class="basket-amount-wrapper">
+                <div class="basket-amount-calc">
+                    <button class="minus-btn" onclick="changeAmount(${i}, -1)">-</button>
+                    <span id="basketAmount${i}" class="basket-amount">${item.amount}</span>
+                    <button class="plus-btn" onclick="changeAmount(${i}, 1)">+</button>
+                </div>
+                <p id="itemTotal${i}" class="item-total-price">${formatCurrency(itemTotal)}</p>
             </div>
-            <p id="itemTotal${i}" class="item-total-price">${formatCurrency(itemTotal)}</p>
         </section>
     `;
 }
+
 function renderBasketPricesTemp(subtotal, deliveryFee, total) {
     return /*html*/ `
         <section class="calc-price-basket">
@@ -56,6 +68,7 @@ function renderBasketPricesTemp(subtotal, deliveryFee, total) {
                 <p>Delivery Fee</p>
                 <p id="deliveryFee">${formatCurrency(deliveryFee)}</p>
             </div>
+            <div class="delivery-fee-underline"></div>
             <div class="total">
                 <p><strong>Total</strong></p>
                 <p><strong id="total">${formatCurrency(total)}</strong></p>
@@ -74,7 +87,7 @@ function renderBasketTextTemp() {
                 <h2>Your Basket</h2>
             </div>
             <div>
-                <p>Nothing here yet. Go ahead and choose something delicious!</p>
+                <p>Nothing here yet. <br> Go ahead and choose something <br> delicious!</p>
             </div>
             <div>
                 <img src="./assets/icons/shopping_cart.png" alt="Shopping Cart">

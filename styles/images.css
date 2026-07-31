@@ -1,6 +1,5 @@
 .dish-card-img {
-    height: 120px;
-    width: 200px;
+    width: 250px;
     border-radius: 12px;
     object-fit: cover;
 }

@@ -14,12 +14,24 @@ body {
     z-index: 2;
     padding: 0px 45px 0px 120px;
 }
+
+@media screen and (max-width: 660px) {
+    .header-bar {
+        padding: 18px 0px 24px 16px;
+    }
+}
+
 .header-wrapper {
     width: 100%;
     max-width: 1440px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+
+@media screen and (max-width: 660px) {
+    .header-wrapper {
+    }
 }
 
 .nav-bar {
@@ -55,7 +67,7 @@ body {
     width: 60px;
 }
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 660px) {
     .menu-logo {
         display: none;
     }

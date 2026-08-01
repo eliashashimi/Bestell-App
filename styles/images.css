@@ -6,6 +6,12 @@
     z-index: 1;
 }
 
+@media screen and (max-width: 660px) {
+    .home-hero {
+        border-radius: 16px;
+    }
+}
+
 .dish-card-img {
     width: 350px;
     border-radius: 12px;

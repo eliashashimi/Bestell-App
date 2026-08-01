@@ -1,5 +1,14 @@
 .icon-categories {
     height: 92px;
     width: 88px;
-    z-index: 2;
+    z-index: 3;
+}
+
+@media screen and (max-width: 660px) {
+    .icon-categories {
+        height: 60px;
+        width: 58px;
+        position: absolute;
+        transform: translateY(-40px);
+    }
 }

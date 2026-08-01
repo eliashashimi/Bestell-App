@@ -3,7 +3,12 @@
     max-width: 1440px;
     display: flex;
     justify-content: center;
-    margin: 0px 0px 80px 0px;
+}
+
+@media screen and (max-width: 1200px) {
+    .order-content {
+        margin: 0px 0px 80px 0px;
+    }
 }
 
 .categories::before {
@@ -27,7 +32,14 @@
     z-index: -1;
 }
 
-@media screen and (max-width: ) {
+@media screen and (max-width: 660px) {
+    .categories {
+        flex-direction: column;
+        align-items: center;
+        justify-content: end;
+        padding: 0;
+        gap: 0;
+    }
 }
 
 .categories::after {
@@ -48,6 +60,12 @@
     font-style: normal;
     font-weight: bold;
     font-weight: 700;
+}
+
+@media screen and (max-width: 660px) {
+    .name-categories {
+        font-size: 32px;
+    }
 }
 
 .aside-category-name {
@@ -72,6 +90,12 @@
 @media screen and (max-width: 740px) {
     .dishContainer {
         padding: 0px 20px;
+    }
+}
+
+@media screen and (max-width: 660px) {
+    .dishesContainer {
+        padding-bottom: 70px;
     }
 }
 
@@ -100,6 +124,14 @@
     justify-content: space-between;
 }
 
+@media screen and (max-width: 500px) {
+    .dish-name-price-wrapper {
+        flex-direction: column;
+        line-height: 120%;
+        gap: 50px;
+    }
+}
+
 .dish-name {
     height: 70px;
     display: flex;
@@ -118,6 +150,12 @@
     }
 }
 
+@media screen and (max-width: 500px) {
+    .dish-name {
+        gap: 8px;
+    }
+}
+
 .price-add-wrapper {
     display: flex;
     flex-direction: column;
@@ -128,6 +166,12 @@
         font-family: "Palanquin";
         font-style: normal;
         font-weight: 600;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .price-add-wrapper {
+        flex-direction: row;
     }
 }
 

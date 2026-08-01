@@ -1,10 +1,16 @@
 .Hero {
-    height: 700px;
+    height: clamp(650px, calc(623.684px + 8.772vw), 750px);
     width: 100%;
     max-width: 1440px;
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+@media screen and (max-width: 660px) {
+    .Hero {
+        padding: 20px 20px 0px;
+    }
 }
 
 .hero-burger {
@@ -13,6 +19,18 @@
     border-radius: 100%;
     transform: translateY(-65%);
     z-index: 2;
+}
+
+@media screen and (max-width: 660px) {
+    .hero-burger {
+        margin-bottom: 16px;
+    }
+}
+
+@media screen and (max-width: 1200px) {
+    .hero-burger {
+        margin-bottom: 16px;
+    }
 }
 
 .restaurant-descr {
@@ -62,6 +80,12 @@
     margin-top: 19px;
 }
 
+@media screen and (max-width: 660px) {
+    .restaurant-descr img {
+        margin-bottom: 16px;
+    }
+}
+
 .burger-house {
     font-size: 48px;
     font-family: "Palanquin Dark";
@@ -76,4 +100,6 @@
     font-style: normal;
     font-weight: 700;
     line-height: 120%;
+    display: flex;
+    text-align: center;
 }

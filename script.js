@@ -1,16 +1,20 @@
 const basketRef = document.getElementById("basket");
+let basket = [];
 
+//#region Währung ändern
 function formatCurrency(amount) {
     return new Intl.NumberFormat("de-DE", { style: "currency", currency: "EUR" }).format(amount);
 }
+//#endregion
 
-let basket = [];
-
+//#region init function beim laden der Seite
 function init() {
     renderCategories();
     renderBasket();
 }
+//#endregion
 
+//#region rendern der Kategorien
 function renderCategories() {
     const renderCategoriesRef = document.getElementById("menuCategories");
     renderCategoriesRef.innerHTML = "";
@@ -23,7 +27,9 @@ function renderCategories() {
         dishesContainerRef.innerHTML = dish;
     }
 }
+//#endregion
 
+//#region rendern der Gerichte
 function renderDishes(i) {
     let dishes = "";
 
@@ -32,15 +38,14 @@ function renderDishes(i) {
     }
     return dishes;
 }
+//#endregion
 
+//#region hinzufügen des Warenkorbes
 function addToBasket(i, j) {
     let selectDish = menuCategories[i].dishes[j];
-
     let foundIndex = basket.findIndex((item) => item.name === selectDish.name);
-
     if (foundIndex > -1) {
         basket[foundIndex].amount++;
-
         updateBasketValues(foundIndex);
     } else {
         basket.push({
@@ -50,12 +55,10 @@ function addToBasket(i, j) {
         });
         renderBasket();
     }
-
-    if (window.innerWidth <= 1200) {
-        document.getElementById("basket-wrapper").classList.add("active");
-    }
 }
+//#endregion
 
+//#region schließen des mobilen Warenkorbes
 function closeMobileBasket() {
     const wrapper = document.getElementById("basket-wrapper");
 
@@ -67,8 +70,11 @@ function closeMobileBasket() {
     if (basketInside) {
         basketInside.classList.remove("active");
     }
+    document.body.classList.remove("basket-open");
 }
+//#endregion
 
+//#region rendern des Warenkorbes
 function renderBasket() {
     basketRef.innerHTML = "";
 
@@ -80,13 +86,24 @@ function renderBasket() {
 
     renderBasketCalc();
 }
+//#endregion
 
+//#region verändern des mobilen Warenkorbes
 function toggleMobileBasket() {
     renderBasket();
 
     const navBasketWrapperRef = document.getElementById("basket-wrapper");
     navBasketWrapperRef.classList.toggle("active");
+
+    if (navBasketWrapperRef.classList.contains("active")) {
+        document.body.classList.add("basket-open");
+    } else {
+        document.body.classList.remove("basket-open");
+    }
 }
+//#endregion
+
+//#region rendern der Berechnung subtotal, deliveryFee und Total
 function renderBasketCalc() {
     const basketCalcRef = document.getElementById("basket-card-wrapper");
     basketCalcRef.innerHTML = "";
@@ -99,18 +116,21 @@ function renderBasketCalc() {
         subtotal += itemTotal;
         basketCalcRef.innerHTML += renderBasketCardTemp(i, item, itemTotal);
     }
+    delivTotal(subtotal);
+}
 
+function delivTotal(subtotal) {
     let deliveryFee = 4.99;
-
     if (subtotal > 60) {
         deliveryFee = 0;
     }
 
     let total = subtotal + deliveryFee;
-
     basketRef.innerHTML += renderBasketPricesTemp(subtotal, deliveryFee, total);
 }
+//#endregion
 
+//#region ändern der Anzahl
 function changeAmount(index, change) {
     basket[index].amount += change;
 
@@ -121,13 +141,17 @@ function changeAmount(index, change) {
         updateBasketValues(index);
     }
 }
+//#endregion
 
+//#region das löschen der Gerichte
 function deleteDish(i) {
     basket.splice(i, 1);
 
     renderBasket();
 }
+//#endregion
 
+//#region kaufen aus dem Warenkorb
 function renderBuy() {
     let orderRef = document.getElementById("basket");
 
@@ -137,8 +161,11 @@ function renderBuy() {
 
     const dialog = document.getElementById("orderDialog");
     dialog.showModal();
+    document.body.classList.add("basket-open");
 }
+//#endregion
 
+//#region schließen des Warenkorbes nach dem Kauf
 function renderBuyClose() {
     const dialog = document.getElementById("orderDialog");
     if (dialog) {
@@ -153,11 +180,12 @@ function renderBuyClose() {
     basket = [];
     renderBasket();
 }
-// die Funktion soll den den wert der Dishes Karten aktualisieren und nicht den ganzen Basket
+//#endregion
+
+//#region das updaten der Werte im Warenkorb
 function updateBasketValues(i) {
     let item = basket[i];
 
-    // es muss überprüft werden ob dieses dish existiert
     if (!item) {
         const card = document.getElementById(`basketCards(${i})`);
         if (card) {
@@ -166,17 +194,15 @@ function updateBasketValues(i) {
         recalculateTotal();
         return;
     }
-
     let itemTotal = item.price * item.amount;
-
     document.getElementById(`basketAmount${i}`).innerText = item.amount;
     document.getElementById(`itemTotal${i}`).innerText = formatCurrency(itemTotal);
 
-    // hier muss neu berechnet werden
     recalculateTotals();
 }
+//#endregion
 
-// function die nur die unteren Preise im Warenkorb ändert
+//#region berechnen der Endsummer mit und ohne deliveryFee
 function recalculateTotals() {
     let subtotal = 0;
 
@@ -191,9 +217,12 @@ function recalculateTotals() {
         deliveryFee = 4.99;
     }
 
+    recalculateDelivTotal(subtotal);
+}
+
+function recalculateDelivTotal(subtotal) {
     let total = subtotal + deliveryFee;
 
-    // hier sollten die ID`S angesprochen und einzelnd geändert werden mit der kalkulation von deliveryFee
     if (deliveryFee === 0) {
         document.getElementById("deliveryFee").innerText = 0;
     } else {
@@ -202,3 +231,4 @@ function recalculateTotals() {
 
     document.getElementById("total").innerText = formatCurrency(total);
 }
+//#endregion

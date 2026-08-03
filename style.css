@@ -33,11 +33,6 @@ body.basket-open {
     align-items: center;
 }
 
-@media screen and (max-width: 660px) {
-    .header-wrapper {
-    }
-}
-
 .nav-bar {
     height: 68px;
     width: 100%;

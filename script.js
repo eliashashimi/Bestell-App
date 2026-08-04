@@ -53,6 +53,7 @@ function addToBasket(i, j) {
             price: selectDish.price,
             amount: 1,
         });
+        changeAmountNav();
         renderBasket();
     }
 }
@@ -76,6 +77,7 @@ function closeMobileBasket() {
 
 //#region rendern des Warenkorbes
 function renderBasket() {
+    // changeAmountNav();
     basketRef.innerHTML = "";
 
     if (basket.length === 0) {
@@ -83,7 +85,6 @@ function renderBasket() {
         return;
     }
     basketRef.innerHTML = renderBasketWrapperTemp();
-
     renderBasketCalc();
 }
 //#endregion
@@ -109,13 +110,13 @@ function renderBasketCalc() {
     basketCalcRef.innerHTML = "";
 
     let subtotal = 0;
-
     for (let i = 0; i < basket.length; i++) {
         let item = basket[i];
         let itemTotal = item.price * item.amount;
         subtotal += itemTotal;
         basketCalcRef.innerHTML += renderBasketCardTemp(i, item, itemTotal);
     }
+
     delivTotal(subtotal);
 }
 
@@ -124,7 +125,6 @@ function delivTotal(subtotal) {
     if (subtotal > 60) {
         deliveryFee = 0;
     }
-
     let total = subtotal + deliveryFee;
     basketRef.innerHTML += renderBasketPricesTemp(subtotal, deliveryFee, total);
 }
@@ -136,6 +136,7 @@ function changeAmount(index, change) {
 
     if (basket[index].amount <= 0) {
         basket.splice(index, 1);
+        changeAmountNav();
         renderBasket();
     } else {
         updateBasketValues(index);
@@ -143,10 +144,25 @@ function changeAmount(index, change) {
 }
 //#endregion
 
+//#region ändern der Anzahl in der navbar
+function changeAmountNav() {
+    const shopCardAmount = document.getElementById("amount-nav-card");
+    let sumAmounts = 0;
+    // if (basket.length === 0) return;
+
+    for (let i = 0; i < basket.length; i++) {
+        sumAmounts += basket[i].amount;
+    }
+
+    shopCardAmount.innerText = sumAmounts;
+    shopCardAmount.classList.toggle("opened", sumAmounts > 0);
+}
+//#endregion
+
 //#region das löschen der Gerichte
 function deleteDish(i) {
     basket.splice(i, 1);
-
+    changeAmountNav();
     renderBasket();
 }
 //#endregion
@@ -176,8 +192,10 @@ function renderBuyClose() {
     if (navBasketWrapperRef) {
         navBasketWrapperRef.classList.remove("active");
     }
+    document.body.classList.remove("basket-open");
 
     basket = [];
+    changeAmountNav();
     renderBasket();
 }
 //#endregion
@@ -185,20 +203,19 @@ function renderBuyClose() {
 //#region das updaten der Werte im Warenkorb
 function updateBasketValues(i) {
     let item = basket[i];
-
     if (!item) {
         const card = document.getElementById(`basketCards(${i})`);
         if (card) {
             card.remove();
         }
-        recalculateTotal();
+        recalculateTotals();
         return;
     }
     let itemTotal = item.price * item.amount;
     document.getElementById(`basketAmount${i}`).innerText = item.amount;
     document.getElementById(`itemTotal${i}`).innerText = formatCurrency(itemTotal);
-
     recalculateTotals();
+    changeAmountNav();
 }
 //#endregion
 
@@ -217,10 +234,10 @@ function recalculateTotals() {
         deliveryFee = 4.99;
     }
 
-    recalculateDelivTotal(subtotal);
+    recalculateDelivTotal(subtotal, deliveryFee);
 }
 
-function recalculateDelivTotal(subtotal) {
+function recalculateDelivTotal(subtotal, deliveryFee) {
     let total = subtotal + deliveryFee;
 
     if (deliveryFee === 0) {

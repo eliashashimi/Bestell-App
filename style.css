@@ -49,6 +49,35 @@ body.basket-open {
         width: 22px;
         color: white;
     }
+    a {
+        width: 25px;
+    }
+}
+.amount-nav-card {
+    display: none;
+}
+
+.amount-nav-card.opened {
+    width: 15px;
+    height: 15px;
+    background-color: rgb(253, 234, 220);
+    color: #e76c1f;
+    font-size: 12px;
+    font-weight: 600;
+    border-radius: 50%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    right: -1px;
+    top: -3px;
+}
+
+.nav-bar a:hover {
+    background-color: white;
+    padding: 1px;
+    border-radius: 4px;
 }
 
 @media screen and (min-width: 1200px) {

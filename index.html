@@ -26,12 +26,36 @@
                 </div>
             </section>
             <nav class="nav-bar">
-                <a href="#home"><img src="./assets/icons/nav-home.png" alt="Home Icon" /></a>
-                <a href="#user"><img src="./assets/icons/nav-person.png" alt="Person Icon" /></a>
-                <a href="#order"><img src="./assets/icons/nav-takeout_dining_2.png" alt="Takeout Icon" /></a>
-                <a onclick="toggleMobileBasket()" href="javascript:void(0)"
-                    ><img src="./assets/icons/nav-shop-cart.png" alt="shopping card Icon"
+                <a href="#home"
+                    ><img
+                        src="./assets/icons/nav-home.png"
+                        alt="Home Icon"
+                        onmouseenter="this.src = './assets/icons/hover-nav-home.png'"
+                        onmouseleave="this.src = './assets/icons/nav-home.png'"
                 /></a>
+                <a href="#user"
+                    ><img
+                        src="./assets/icons/nav-person.png"
+                        alt="Person Icon"
+                        onmouseenter="this.src = './assets/icons/hover-nav-person.png'"
+                        onmouseleave="this.src = './assets/icons/nav-person.png'"
+                /></a>
+                <a href="#order"
+                    ><img
+                        src="./assets/icons/nav-takeout_dining_2.png"
+                        alt="Takeout Icon"
+                        onmouseenter="this.src = './assets/icons/hover-nav-takeout_dining_2.png'"
+                        onmouseleave="this.src = './assets/icons/nav-takeout_dining_2.png'"
+                /></a>
+                <a onclick="toggleMobileBasket()" href="javascript:void(0)"
+                    ><img
+                        src="./assets/icons/nav-shop-cart.png"
+                        alt="shopping card Icon"
+                        onmouseenter="this.src = './assets/icons/hover-nav-shop_cart.png'"
+                        onmouseleave="this.src = './assets/icons/nav-shop-cart.png'"
+                    />
+                    <p id="amount-nav-card" class="amount-nav-card"></p>
+                </a>
             </nav>
         </header>
         <main>

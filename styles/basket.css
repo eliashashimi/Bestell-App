@@ -170,6 +170,7 @@
         width: 25px;
         background-color: white;
         color: #e76c1f;
+        cursor: pointer;
     }
 }
 
@@ -195,6 +196,7 @@
         font-family: "Palanquin";
         font-style: normal;
         font-weight: 600;
+        cursor: pointer;
     }
     .minus-btn {
         border: none;
@@ -203,6 +205,7 @@
         font-family: "Palanquin";
         font-style: normal;
         font-weight: 600;
+        cursor: pointer;
     }
 }
 
@@ -251,6 +254,7 @@
         border-bottom-right-radius: 60px;
         margin-top: 32px;
         margin-bottom: 50px;
+        cursor: pointer;
     }
 }
 

@@ -187,4 +187,5 @@
 .add-button-dish-card:hover {
     border-color: #e76c1f !important;
     color: #e76c1f !important;
+    cursor: pointer;
 }

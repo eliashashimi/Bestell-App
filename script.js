@@ -1,20 +1,16 @@
 const basketRef = document.getElementById("basket");
 let basket = [];
 
-//#region Währung ändern
 function formatCurrency(amount) {
     return new Intl.NumberFormat("de-DE", { style: "currency", currency: "EUR" }).format(amount);
 }
-//#endregion
 
-//#region init function beim laden der Seite
+//#region rendern der Kategorien, Gerichte und Warenkorb beim laden der Seite
 function init() {
     renderCategories();
     renderBasket();
 }
-//#endregion
 
-//#region rendern der Kategorien
 function renderCategories() {
     const renderCategoriesRef = document.getElementById("menuCategories");
     renderCategoriesRef.innerHTML = "";
@@ -27,9 +23,7 @@ function renderCategories() {
         dishesContainerRef.innerHTML = dish;
     }
 }
-//#endregion
 
-//#region rendern der Gerichte
 function renderDishes(i) {
     let dishes = "";
 
@@ -38,9 +32,20 @@ function renderDishes(i) {
     }
     return dishes;
 }
+
+function renderBasket() {
+    basketRef.innerHTML = "";
+
+    if (basket.length === 0) {
+        basketRef.innerHTML = renderBasketTextTemp();
+        return;
+    }
+    basketRef.innerHTML = renderBasketWrapperTemp();
+    renderBasketCalc();
+}
 //#endregion
 
-//#region hinzufügen des Warenkorbes
+//#region hinzufügen in den Warenkorb und löschen
 function addToBasket(i, j) {
     let selectDish = menuCategories[i].dishes[j];
     let foundIndex = basket.findIndex((item) => item.name === selectDish.name);
@@ -57,9 +62,28 @@ function addToBasket(i, j) {
         renderBasket();
     }
 }
+
+function deleteDish(i) {
+    basket.splice(i, 1);
+    changeAmountNav();
+    renderBasket();
+}
 //#endregion
 
-//#region schließen des mobilen Warenkorbes
+//#region verändern und schließen des mobilen Warenkorbes
+function toggleMobileBasket() {
+    renderBasket();
+
+    const navBasketWrapperRef = document.getElementById("basket-wrapper");
+    navBasketWrapperRef.classList.toggle("active");
+
+    if (navBasketWrapperRef.classList.contains("active")) {
+        document.body.classList.add("basket-open");
+    } else {
+        document.body.classList.remove("basket-open");
+    }
+}
+
 function closeMobileBasket() {
     const wrapper = document.getElementById("basket-wrapper");
 
@@ -75,36 +99,7 @@ function closeMobileBasket() {
 }
 //#endregion
 
-//#region rendern des Warenkorbes
-function renderBasket() {
-    // changeAmountNav();
-    basketRef.innerHTML = "";
-
-    if (basket.length === 0) {
-        basketRef.innerHTML = renderBasketTextTemp();
-        return;
-    }
-    basketRef.innerHTML = renderBasketWrapperTemp();
-    renderBasketCalc();
-}
-//#endregion
-
-//#region verändern des mobilen Warenkorbes
-function toggleMobileBasket() {
-    renderBasket();
-
-    const navBasketWrapperRef = document.getElementById("basket-wrapper");
-    navBasketWrapperRef.classList.toggle("active");
-
-    if (navBasketWrapperRef.classList.contains("active")) {
-        document.body.classList.add("basket-open");
-    } else {
-        document.body.classList.remove("basket-open");
-    }
-}
-//#endregion
-
-//#region rendern der Berechnung subtotal, deliveryFee und Total
+//#region rendern der Berechnung der Zahlen im Warenkorb
 function renderBasketCalc() {
     const basketCalcRef = document.getElementById("basket-card-wrapper");
     basketCalcRef.innerHTML = "";
@@ -128,79 +123,7 @@ function delivTotal(subtotal) {
     let total = subtotal + deliveryFee;
     basketRef.innerHTML += renderBasketPricesTemp(subtotal, deliveryFee, total);
 }
-//#endregion
 
-//#region ändern der Anzahl
-function changeAmount(index, change) {
-    basket[index].amount += change;
-
-    if (basket[index].amount <= 0) {
-        basket.splice(index, 1);
-        changeAmountNav();
-        renderBasket();
-    } else {
-        updateBasketValues(index);
-    }
-}
-//#endregion
-
-//#region ändern der Anzahl in der navbar
-function changeAmountNav() {
-    const shopCardAmount = document.getElementById("amount-nav-card");
-    let sumAmounts = 0;
-    // if (basket.length === 0) return;
-
-    for (let i = 0; i < basket.length; i++) {
-        sumAmounts += basket[i].amount;
-    }
-
-    shopCardAmount.innerText = sumAmounts;
-    shopCardAmount.classList.toggle("opened", sumAmounts > 0);
-}
-//#endregion
-
-//#region das löschen der Gerichte
-function deleteDish(i) {
-    basket.splice(i, 1);
-    changeAmountNav();
-    renderBasket();
-}
-//#endregion
-
-//#region kaufen aus dem Warenkorb
-function renderBuy() {
-    let orderRef = document.getElementById("basket");
-
-    if (!document.getElementById("orderDialog")) {
-        orderRef.innerHTML += renderBuyTemp();
-    }
-
-    const dialog = document.getElementById("orderDialog");
-    dialog.showModal();
-    document.body.classList.add("basket-open");
-}
-//#endregion
-
-//#region schließen des Warenkorbes nach dem Kauf
-function renderBuyClose() {
-    const dialog = document.getElementById("orderDialog");
-    if (dialog) {
-        dialog.close();
-    }
-
-    const navBasketWrapperRef = document.getElementById("basket-wrapper");
-    if (navBasketWrapperRef) {
-        navBasketWrapperRef.classList.remove("active");
-    }
-    document.body.classList.remove("basket-open");
-
-    basket = [];
-    changeAmountNav();
-    renderBasket();
-}
-//#endregion
-
-//#region das updaten der Werte im Warenkorb
 function updateBasketValues(i) {
     let item = basket[i];
     if (!item) {
@@ -217,9 +140,7 @@ function updateBasketValues(i) {
     recalculateTotals();
     changeAmountNav();
 }
-//#endregion
 
-//#region berechnen der Endsummer mit und ohne deliveryFee
 function recalculateTotals() {
     let subtotal = 0;
 
@@ -248,4 +169,63 @@ function recalculateDelivTotal(subtotal, deliveryFee) {
 
     document.getElementById("total").innerText = formatCurrency(total);
 }
+//#endregion
+
+//#region ändern der Anzahl im Warenkorb und Symbol
+function changeAmount(index, change) {
+    basket[index].amount += change;
+
+    if (basket[index].amount <= 0) {
+        basket.splice(index, 1);
+        changeAmountNav();
+        renderBasket();
+    } else {
+        updateBasketValues(index);
+    }
+}
+
+function changeAmountNav() {
+    const shopCardAmount = document.getElementById("amount-nav-card");
+    let sumAmounts = 0;
+    // if (basket.length === 0) return;
+
+    for (let i = 0; i < basket.length; i++) {
+        sumAmounts += basket[i].amount;
+    }
+
+    shopCardAmount.innerText = sumAmounts;
+    shopCardAmount.classList.toggle("opened", sumAmounts > 0);
+}
+//#endregion
+
+//#region kaufen aus dem, leeren und schließen des Warenkorbes
+function renderBuy() {
+    let orderRef = document.getElementById("basket");
+
+    if (!document.getElementById("orderDialog")) {
+        orderRef.innerHTML += renderBuyTemp();
+    }
+
+    const dialog = document.getElementById("orderDialog");
+    dialog.showModal();
+    document.body.classList.add("basket-open");
+}
+
+function renderBuyClose() {
+    const dialog = document.getElementById("orderDialog");
+    if (dialog) {
+        dialog.close();
+    }
+
+    const navBasketWrapperRef = document.getElementById("basket-wrapper");
+    if (navBasketWrapperRef) {
+        navBasketWrapperRef.classList.remove("active");
+    }
+    document.body.classList.remove("basket-open");
+
+    basket = [];
+    changeAmountNav();
+    renderBasket();
+}
+
 //#endregion

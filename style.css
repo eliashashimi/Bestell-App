@@ -51,6 +51,7 @@ body.basket-open {
     }
     a {
         width: 25px;
+        cursor: pointer;
     }
 }
 .amount-nav-card {
